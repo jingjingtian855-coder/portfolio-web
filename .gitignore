@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dist-next/
+image/
+.agents/
+.DS_Store
+*.log
+/hero-*.png
+/tape-*.png
