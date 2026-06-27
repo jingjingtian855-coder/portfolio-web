@@ -97,7 +97,7 @@ const desktopApps = [
   { label: 'ILLUSTRATOR', image: '/images/desktop-cutouts/illustrator.png', x: '39.17%', y: '81.55%' },
   { label: 'INDESIGN', image: '/images/desktop-cutouts/indesign.png', x: '68.61%', y: '44.67%' },
   { label: 'PROCESSING', image: '/images/desktop-cutouts/processing.png', x: '60.10%', y: '30.87%', iconClass: 'desktop-icon-processing' },
-  { label: 'UNREAL', image: '/images/desktop-cutouts/unreal.png', x: '62.79%', y: '22.00%' },
+  { label: 'UNREAL', image: '/images/desktop-cutouts/unreal.png', x: '64.00%', y: '20.80%' },
   { label: 'TOUCHDESIGNER', image: '/images/desktop-cutouts/touchdesigner.png', x: '46.48%', y: '76.04%', iconClass: 'desktop-icon-touchdesigner' },
   { label: 'MESHLAB', image: '/images/desktop-cutouts/eye.png', x: '45.68%', y: '63.95%' },
   { label: 'WORD', image: '/images/desktop-cutouts/word-app.png', x: '35.43%', y: '26.39%' },

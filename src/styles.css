@@ -2937,7 +2937,6 @@ footer span:nth-child(3) {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  width: min(1880px, calc(100vw - clamp(96px, 8vw, 160px)));
   height: 100%;
 }
 
@@ -2951,25 +2950,25 @@ footer span:nth-child(3) {
 }
 
 .menu-nav .hero-wordmark {
-  font: 500 26px/1 "Century Gothic", "Bahnschrift", sans-serif;
+  font: 500 15px/1 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: .08em;
 }
 
 .menu-nav .hero-wordmark span {
-  margin-left: 7px;
-  font-size: 14px;
+  margin-left: 5px;
+  font-size: 9px;
 }
 
 .menu-nav nav {
   display: flex;
   justify-self: end;
-  gap: clamp(28px, 2.2vw, 44px);
+  gap: clamp(20px, 2vw, 40px);
 }
 
 .menu-nav nav a {
   position: relative;
   font-family: "Century Gothic", "Bahnschrift", sans-serif;
-  font-size: 23px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: .08em;
 }
@@ -2991,66 +2990,70 @@ footer span:nth-child(3) {
 
 .menu-top {
   display: grid;
-  grid-template-columns: minmax(420px, 520px) minmax(520px, 760px) 1fr;
-  gap: clamp(96px, 10vw, 210px);
+  grid-template-columns: minmax(280px, 360px) minmax(320px, 520px) 1fr;
+  gap: clamp(36px, 4vw, 76px);
   align-items: end;
-  padding-top: clamp(86px, 8.8vh, 107px);
+  padding-top: clamp(42px, 5vh, 58px);
 }
 
 .menu-top h2 {
   margin: 0;
-  font: 300 clamp(62px, 4.8vw, 86px)/.9 "Century Gothic", "Bahnschrift Light", sans-serif;
+  font: 300 clamp(48px, 4vw, 72px)/.9 "Century Gothic", "Bahnschrift Light", sans-serif;
   letter-spacing: -.08em;
 }
 
 .menu-top p {
-  max-width: 800px;
-  margin: 0 0 12px;
-  font: 600 clamp(14px, .92vw, 18px)/1.45 "SimHei", "Microsoft YaHei", sans-serif;
+  max-width: 500px;
+  margin: 0 0 5px;
+  font: 600 clamp(11px, .76vw, 14px)/1.45 "SimHei", "Microsoft YaHei", sans-serif;
 }
 
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(56px, 4.6vw, 92px);
-  width: min(1756px, 96%);
-  margin: clamp(66px, 7.1vh, 84px) auto 0;
+  gap: clamp(28px, 4.6vw, 84px);
+  width: min(1460px, 94%);
+  margin: clamp(34px, 4.8vh, 54px) auto 0;
   align-items: start;
 }
 
 .menu-card {
   position: relative;
-  width: min(100%, 370px);
+  width: min(100%, 260px);
   justify-self: center;
 }
 
 .menu-card:nth-child(1) {
-  margin-top: clamp(16px, 1.7vh, 20px);
+  width: min(100%, 300px);
+  margin-top: clamp(34px, 5vh, 54px);
 }
 
 .menu-card:nth-child(2) {
-  margin-top: clamp(92px, 9.5vh, 108px);
+  width: min(100%, 238px);
+  margin-top: clamp(82px, 10vh, 112px);
 }
 
 .menu-card:nth-child(3) {
-  margin-top: 0;
+  width: min(100%, 205px);
+  margin-top: clamp(24px, 3.6vh, 48px);
 }
 
 .menu-card:nth-child(4) {
-  margin-top: clamp(62px, 6.3vh, 72px);
+  width: min(100%, 280px);
+  margin-top: clamp(62px, 8vh, 86px);
 }
 
 .menu-card-index {
   position: absolute;
-  top: 15px;
-  left: -68px;
+  top: 9px;
+  left: -38px;
   display: grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
+  width: 27px;
+  height: 27px;
   padding: 0;
   background: #ffd900;
-  font: 600 14px/1 "Century Gothic", "Bahnschrift", sans-serif;
+  font: 600 9px/1 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: .08em;
   text-align: center;
 }
@@ -3109,15 +3112,15 @@ footer span:nth-child(3) {
 }
 
 .menu-card h3 {
-  margin: 20px 0 7px;
-  font: 700 clamp(18px, 1.25vw, 24px)/1.05 "Century Gothic", "Bahnschrift", sans-serif;
+  margin: 12px 0 5px;
+  font: 700 clamp(14px, 1vw, 18px)/1.05 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: -.035em;
 }
 
 .menu-card p {
   margin: 0;
   color: rgba(18, 18, 15, .62);
-  font: 500 16px/1.25 "Century Gothic", "Bahnschrift", sans-serif;
+  font: 500 10px/1.25 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: .06em;
 }
 
@@ -3320,14 +3323,9 @@ footer span:nth-child(3) {
 }
 
 @media (max-width: 1000px) {
-  .menu-section > .shell {
-    width: calc(100vw - 48px);
-  }
-
   .menu-top {
     grid-template-columns: minmax(240px, 300px) 1fr;
     gap: 30px;
-    padding-top: 58px;
   }
 
   .menu-grid {
@@ -3349,10 +3347,6 @@ footer span:nth-child(3) {
     height: auto;
     min-height: 100svh;
     padding: 24px 0 32px;
-  }
-
-  .menu-section > .shell {
-    width: calc(100vw - 32px);
   }
 
   .menu-nav nav {
