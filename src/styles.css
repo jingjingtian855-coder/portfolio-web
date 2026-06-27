@@ -2951,25 +2951,25 @@ footer span:nth-child(3) {
 }
 
 .menu-nav .hero-wordmark {
-  font: 500 15px/1 "Century Gothic", "Bahnschrift", sans-serif;
+  font: 500 26px/1 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: .08em;
 }
 
 .menu-nav .hero-wordmark span {
-  margin-left: 5px;
-  font-size: 9px;
+  margin-left: 7px;
+  font-size: 14px;
 }
 
 .menu-nav nav {
   display: flex;
   justify-self: end;
-  gap: clamp(20px, 2vw, 40px);
+  gap: clamp(28px, 2.2vw, 44px);
 }
 
 .menu-nav nav a {
   position: relative;
   font-family: "Century Gothic", "Bahnschrift", sans-serif;
-  font-size: 13px;
+  font-size: 23px;
   font-weight: 600;
   letter-spacing: .08em;
 }
@@ -2994,19 +2994,19 @@ footer span:nth-child(3) {
   grid-template-columns: minmax(420px, 520px) minmax(520px, 760px) 1fr;
   gap: clamp(96px, 10vw, 210px);
   align-items: end;
-  padding-top: clamp(96px, 9.8vh, 118px);
+  padding-top: clamp(86px, 8.8vh, 107px);
 }
 
 .menu-top h2 {
   margin: 0;
-  font: 300 clamp(48px, 4vw, 72px)/.9 "Century Gothic", "Bahnschrift Light", sans-serif;
+  font: 300 clamp(62px, 4.8vw, 86px)/.9 "Century Gothic", "Bahnschrift Light", sans-serif;
   letter-spacing: -.08em;
 }
 
 .menu-top p {
-  max-width: 620px;
+  max-width: 800px;
   margin: 0 0 12px;
-  font: 600 clamp(11px, .76vw, 14px)/1.45 "SimHei", "Microsoft YaHei", sans-serif;
+  font: 600 clamp(14px, .92vw, 18px)/1.45 "SimHei", "Microsoft YaHei", sans-serif;
 }
 
 .menu-grid {
@@ -3014,7 +3014,7 @@ footer span:nth-child(3) {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(56px, 4.6vw, 92px);
   width: min(1756px, 96%);
-  margin: clamp(76px, 8.1vh, 96px) auto 0;
+  margin: clamp(66px, 7.1vh, 84px) auto 0;
   align-items: start;
 }
 
@@ -3042,15 +3042,15 @@ footer span:nth-child(3) {
 
 .menu-card-index {
   position: absolute;
-  top: 9px;
-  left: -38px;
+  top: 15px;
+  left: -68px;
   display: grid;
   place-items: center;
-  width: 27px;
-  height: 27px;
+  width: 48px;
+  height: 48px;
   padding: 0;
   background: #ffd900;
-  font: 600 9px/1 "Century Gothic", "Bahnschrift", sans-serif;
+  font: 600 14px/1 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: .08em;
   text-align: center;
 }
@@ -3109,15 +3109,15 @@ footer span:nth-child(3) {
 }
 
 .menu-card h3 {
-  margin: 12px 0 5px;
-  font: 700 clamp(14px, 1vw, 18px)/1.05 "Century Gothic", "Bahnschrift", sans-serif;
+  margin: 20px 0 7px;
+  font: 700 clamp(18px, 1.25vw, 24px)/1.05 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: -.035em;
 }
 
 .menu-card p {
   margin: 0;
   color: rgba(18, 18, 15, .62);
-  font: 500 10px/1.25 "Century Gothic", "Bahnschrift", sans-serif;
+  font: 500 16px/1.25 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: .06em;
 }
 
