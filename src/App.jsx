@@ -544,7 +544,8 @@ function App() {
       const bookPages = bookSection?.querySelectorAll('.design-book-page')
       if (bookSection && bookPages?.length) {
         const pageCount = bookPages.length
-        const bookTravel = viewportHeight * (pageCount - 1) * .95
+        const turnCount = Math.max(1, pageCount - 1)
+        const bookTravel = viewportHeight * turnCount * 1.06
         bookSection.style.height = `${viewportHeight + bookTravel}px`
 
         const bookTop = getVirtualTop(bookSection, scrollY)
@@ -553,42 +554,54 @@ function App() {
           : 0
         const bookEnter = smoothstep((viewportHeight - bookTop) / (viewportHeight * .78))
         const bookExit = smoothstep(-bookTop / Math.max(1, viewportHeight * .9))
-        const pageProgress = bookProgress * (pageCount - 1)
-        const currentPage = Math.min(pageCount, Math.floor(pageProgress + .5) + 1)
+        const pageProgress = bookProgress * turnCount
+        const currentPage = Math.min(pageCount, Math.floor(pageProgress + .58) + 1)
 
         bookSection.style.setProperty('--book-progress', bookProgress.toFixed(3))
         bookSection.style.setProperty('--book-enter', bookEnter.toFixed(3))
         bookSection.style.setProperty('--book-exit', bookExit.toFixed(3))
-        bookSection.style.setProperty('--book-drop-y', `${((1 - bookEnter) * -62).toFixed(2)}vh`)
-        bookSection.style.setProperty('--book-drop-rotate', `${((1 - bookEnter) * -8).toFixed(2)}deg`)
-        bookSection.style.setProperty('--book-drop-scale', (.82 + bookEnter * .18 - bookExit * .02).toFixed(4))
+        bookSection.style.setProperty('--book-drop-y', `${((1 - bookEnter) * -46).toFixed(2)}vh`)
+        bookSection.style.setProperty('--book-drop-rotate', `${((1 - bookEnter) * -4.8).toFixed(2)}deg`)
+        bookSection.style.setProperty('--book-drop-scale', (.88 + bookEnter * .12 - bookExit * .018).toFixed(4))
         bookSection.style.setProperty('--book-drop-opacity', Math.max(.16, bookEnter).toFixed(3))
         bookSection.querySelector('.design-book-current')?.replaceChildren(String(currentPage).padStart(2, '0'))
 
         bookPages.forEach((page, index) => {
-          const turn = Math.max(0, Math.min(1, pageProgress - index))
-          const easedTurn = turn < .5
-            ? 4 * turn * turn * turn
-            : 1 - Math.pow(-2 * turn + 2, 3) / 2
+          const canTurn = index < pageCount - 1
+          const turn = canTurn ? clamp01(pageProgress - index) : 0
+          const incoming = index === 0 ? 1 : clamp01(pageProgress - (index - 1) + .08)
+          const incomingEase = smoothstep(incoming)
+          const easedTurn = turn < 1 ? 1 - Math.pow(1 - turn, 2.35) : 1
           const fold = Math.sin(Math.PI * turn)
-          const lateSettle = smoothstep((turn - .72) / .28)
-          const stackDepth = (pageCount - index) * 5 + fold * 72 - turn * 32
-          const zIndex = turn > 0 && turn < 1
-            ? pageCount * 3
-            : turn >= 1
-              ? index + 1
-              : pageCount - index
+          const pageBend = Math.sin(Math.PI * clamp01((turn - .05) / .9))
+          const lateSettle = smoothstep((turn - .78) / .22)
+          const isTurning = turn > 0 && turn < 1
+          const isStacked = turn >= 1
+          const visible = index <= Math.ceil(pageProgress) + 1
+          const unopenedDepth = Math.max(0, index - pageProgress)
+          const zIndex = isTurning
+            ? pageCount * 8 + (pageCount - index)
+            : isStacked
+              ? index + pageCount
+              : pageCount * 5 - index
           page.style.zIndex = String(zIndex)
-          page.style.setProperty('--book-angle', `${(-176 * easedTurn).toFixed(2)}deg`)
-          page.style.setProperty('--book-lift', `${(-18 * fold).toFixed(2)}px`)
+          page.style.setProperty('--book-angle', `${(-92 * easedTurn).toFixed(2)}deg`)
+          page.style.setProperty('--book-lift', `${(-22 * fold + (1 - incomingEase) * 10).toFixed(2)}px`)
           page.style.setProperty('--book-fold', fold.toFixed(3))
-          page.style.setProperty('--book-page-z', `${stackDepth.toFixed(2)}px`)
-          page.style.setProperty('--book-page-x', `${(-7 * fold - 10 * lateSettle).toFixed(2)}px`)
-          page.style.setProperty('--book-page-roll', `${(-2.8 * fold + .65 * lateSettle).toFixed(2)}deg`)
-          page.style.setProperty('--book-page-curl', (1 - fold * .048).toFixed(4))
-          page.style.setProperty('--book-edge-pull', `${(fold * 4.2).toFixed(2)}%`)
-          page.style.setProperty('--book-front-dim', (.035 + fold * .24 + turn * .05).toFixed(3))
-          page.style.setProperty('--book-edge-light', (.16 + fold * .46).toFixed(3))
+          page.style.setProperty('--book-bend', pageBend.toFixed(3))
+          page.style.setProperty('--book-page-z', `${(fold * 168 - turn * 42 - unopenedDepth * 24).toFixed(2)}px`)
+          page.style.setProperty('--book-page-x', `${((1 - incomingEase) * 8.2 - fold * 1.8 - lateSettle * 5.6).toFixed(2)}%`)
+          page.style.setProperty('--book-page-y', `${((1 - incomingEase) * 1.8 - fold * 1.15 + lateSettle * .28).toFixed(2)}%`)
+          page.style.setProperty('--book-page-roll', `${(-1.9 * fold + .38 * lateSettle).toFixed(2)}deg`)
+          page.style.setProperty('--book-page-scale', (.986 + incomingEase * .014 - fold * .008).toFixed(4))
+          page.style.setProperty('--book-page-opacity', visible ? '1' : '0')
+          page.style.setProperty('--book-front-dim', (.02 + fold * .28 + turn * .1).toFixed(3))
+          page.style.setProperty('--book-edge-light', (.1 + fold * .42).toFixed(3))
+          page.style.setProperty('--book-stack-dark', (lateSettle * .58 + fold * .1).toFixed(3))
+          page.style.setProperty('--book-shadow-opacity', (.1 + fold * .42 + lateSettle * .08).toFixed(3))
+          page.style.setProperty('--book-shadow-x', `${(20 + fold * 66 - lateSettle * 42).toFixed(2)}px`)
+          page.style.setProperty('--book-shadow-y', `${(22 + fold * 20).toFixed(2)}px`)
+          page.style.setProperty('--book-shadow-blur', `${(22 + fold * 54).toFixed(2)}px`)
         })
       }
 
@@ -1565,12 +1578,17 @@ function App() {
                   key={page}
                   style={{ zIndex: designBookPages.length - index }}
                 >
-                  <img
-                    src={page}
-                    alt={`平面作品展示第 ${index + 1} 页`}
-                    loading={index < 2 ? 'eager' : 'lazy'}
-                    draggable="false"
-                  />
+                  <span className="design-book-page-shadow" aria-hidden="true" />
+                  <span className="design-book-page-face design-book-page-front">
+                    <img
+                      src={page}
+                      alt={`平面作品展示第 ${index + 1} 页`}
+                      loading={index < 2 ? 'eager' : 'lazy'}
+                      draggable="false"
+                    />
+                  </span>
+                  <span className="design-book-page-face design-book-page-back" aria-hidden="true" />
+                  <span className="design-book-page-edge" aria-hidden="true" />
                 </figure>
               ))}
             </div>
