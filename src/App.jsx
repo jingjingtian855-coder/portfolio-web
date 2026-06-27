@@ -566,42 +566,43 @@ function App() {
         bookSection.style.setProperty('--book-drop-opacity', Math.max(.16, bookEnter).toFixed(3))
         bookSection.querySelector('.design-book-current')?.replaceChildren(String(currentPage).padStart(2, '0'))
 
+        const activeIndex = Math.min(pageCount - 1, Math.floor(pageProgress))
+        const activeTurn = clamp01(pageProgress - activeIndex)
+        const hasTurningPage = activeIndex < pageCount - 1
+        const baseIndex = hasTurningPage ? activeIndex + 1 : activeIndex
+        const stackDepth = Math.min(turnCount, pageProgress)
+
+        bookSection.style.setProperty('--book-stack-width', `${(7 + stackDepth * 1.8).toFixed(2)}px`)
+        bookSection.style.setProperty('--book-stack-opacity', (.36 + clamp01(stackDepth / 2.2) * .28).toFixed(3))
+
         bookPages.forEach((page, index) => {
-          const canTurn = index < pageCount - 1
-          const turn = canTurn ? clamp01(pageProgress - index) : 0
-          const incoming = index === 0 ? 1 : clamp01(pageProgress - (index - 1) + .08)
-          const incomingEase = smoothstep(incoming)
+          const isActiveTurn = hasTurningPage && index === activeIndex
+          const isBasePage = index === baseIndex
+          const isPastPage = index < activeIndex
+          const turn = isActiveTurn ? activeTurn : 0
           const easedTurn = turn < 1 ? 1 - Math.pow(1 - turn, 2.35) : 1
           const fold = Math.sin(Math.PI * turn)
           const pageBend = Math.sin(Math.PI * clamp01((turn - .05) / .9))
-          const lateSettle = smoothstep((turn - .78) / .22)
-          const isTurning = turn > 0 && turn < 1
-          const isStacked = turn >= 1
-          const visible = index <= Math.ceil(pageProgress) + 1
-          const unopenedDepth = Math.max(0, index - pageProgress)
-          const zIndex = isTurning
-            ? pageCount * 8 + (pageCount - index)
-            : isStacked
-              ? index + pageCount
-              : pageCount * 5 - index
+          const visible = isActiveTurn || isBasePage
+          const zIndex = isActiveTurn
+            ? pageCount * 8
+            : isBasePage
+              ? pageCount * 4
+              : isPastPage
+                ? index
+                : 0
           page.style.zIndex = String(zIndex)
-          page.style.setProperty('--book-angle', `${(-92 * easedTurn).toFixed(2)}deg`)
-          page.style.setProperty('--book-lift', `${(-22 * fold + (1 - incomingEase) * 10).toFixed(2)}px`)
+          page.style.setProperty('--book-angle', `${(isActiveTurn ? -92 * easedTurn : 0).toFixed(2)}deg`)
           page.style.setProperty('--book-fold', fold.toFixed(3))
           page.style.setProperty('--book-bend', pageBend.toFixed(3))
-          page.style.setProperty('--book-page-z', `${(fold * 168 - turn * 42 - unopenedDepth * 24).toFixed(2)}px`)
-          page.style.setProperty('--book-page-x', `${((1 - incomingEase) * 8.2 - fold * 1.8 - lateSettle * 5.6).toFixed(2)}%`)
-          page.style.setProperty('--book-page-y', `${((1 - incomingEase) * 1.8 - fold * 1.15 + lateSettle * .28).toFixed(2)}%`)
-          page.style.setProperty('--book-page-roll', `${(-1.9 * fold + .38 * lateSettle).toFixed(2)}deg`)
-          page.style.setProperty('--book-page-scale', (.986 + incomingEase * .014 - fold * .008).toFixed(4))
           page.style.setProperty('--book-page-opacity', visible ? '1' : '0')
-          page.style.setProperty('--book-front-dim', (.02 + fold * .28 + turn * .1).toFixed(3))
-          page.style.setProperty('--book-edge-light', (.1 + fold * .42).toFixed(3))
-          page.style.setProperty('--book-stack-dark', (lateSettle * .58 + fold * .1).toFixed(3))
-          page.style.setProperty('--book-shadow-opacity', (.1 + fold * .42 + lateSettle * .08).toFixed(3))
-          page.style.setProperty('--book-shadow-x', `${(20 + fold * 66 - lateSettle * 42).toFixed(2)}px`)
-          page.style.setProperty('--book-shadow-y', `${(22 + fold * 20).toFixed(2)}px`)
-          page.style.setProperty('--book-shadow-blur', `${(22 + fold * 54).toFixed(2)}px`)
+          page.style.setProperty('--book-front-dim', (.012 + fold * .14 + turn * .035).toFixed(3))
+          page.style.setProperty('--book-edge-light', (.08 + fold * .26).toFixed(3))
+          page.style.setProperty('--book-stack-dark', (fold * .045).toFixed(3))
+          page.style.setProperty('--book-shadow-opacity', (isActiveTurn ? .05 + fold * .24 : .045).toFixed(3))
+          page.style.setProperty('--book-shadow-x', `${(14 + fold * 38).toFixed(2)}px`)
+          page.style.setProperty('--book-shadow-y', `${(17 + fold * 12).toFixed(2)}px`)
+          page.style.setProperty('--book-shadow-blur', `${(24 + fold * 36).toFixed(2)}px`)
         })
       }
 
@@ -1570,7 +1571,6 @@ function App() {
           </div>
 
           <div className="design-book-stage">
-            <div className="design-book-spine" aria-hidden="true" />
             <div className="design-book-pages">
               {designBookPages.map((page, index) => (
                 <figure
@@ -1592,6 +1592,7 @@ function App() {
                 </figure>
               ))}
             </div>
+            <div className="design-book-spine" aria-hidden="true" />
           </div>
 
           <p className="design-book-hint">SCROLL TO TURN THE PAGES</p>

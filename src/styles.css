@@ -4834,6 +4834,8 @@ body.intro-locked {
   --book-drop-scale: 1;
   --book-drop-opacity: 1;
   --book-base-y: clamp(12px, 1.7vh, 22px);
+  --book-stack-width: 7px;
+  --book-stack-opacity: .36;
   position: relative;
   height: 480svh;
   min-height: 100svh;
@@ -4915,20 +4917,31 @@ body.intro-locked {
 .design-book-stage::before {
   content: "";
   position: absolute;
-  right: 2.5%;
-  bottom: -9%;
-  left: 3%;
+  right: 3.5%;
+  bottom: -7.5%;
+  left: 2.5%;
   z-index: -2;
-  height: 15%;
+  height: 13%;
   border-radius: 50%;
-  background: rgba(17, 18, 15, .26);
-  filter: blur(30px);
-  opacity: calc(.55 + var(--book-progress) * .16);
-  transform: translate3d(22px, 10px, -80px) scaleX(.92);
+  background: rgba(47, 46, 41, .2);
+  filter: blur(28px);
+  opacity: calc(.42 + var(--book-progress) * .1);
+  transform: translate3d(16px, 8px, -80px) scaleX(.94);
 }
 
 .design-book-stage::after {
-  display: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: block;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(246,245,240,.92), rgba(202,200,192,.72)) 100% 0 / clamp(3px, .34vw, 6px) calc(100% + 5px) no-repeat,
+    linear-gradient(180deg, rgba(247,246,241,.9), rgba(194,192,184,.66)) 0 100% / calc(100% + 5px) clamp(4px, .42vw, 7px) no-repeat;
+  opacity: .78;
+  filter: drop-shadow(0 10px 16px rgba(38,37,33,.1));
+  transform: translate3d(4px, 5px, -18px);
 }
 
 .design-book-pages {
@@ -4949,36 +4962,39 @@ body.intro-locked {
 }
 
 .design-book-pages::before {
-  left: -2.6%;
-  width: clamp(22px, 2.2vw, 44px);
+  left: calc(var(--book-stack-width) * -.72);
+  width: var(--book-stack-width);
+  z-index: 6;
   background:
-    repeating-linear-gradient(90deg, rgba(11,10,8,.88) 0 3px, rgba(238,235,224,.84) 3px 5px, rgba(43,39,31,.82) 5px 9px),
-    linear-gradient(90deg, rgba(12,11,9,.9), rgba(255,255,255,.2) 58%, transparent);
-  opacity: calc(.22 + var(--book-progress) * .68);
-  transform: translate3d(0, 0, 38px) rotateY(-86deg);
-  transform-origin: 100% 50%;
+    linear-gradient(90deg, rgba(54,52,47,.12), rgba(211,209,201,.74) 24%, rgba(255,255,255,.84) 58%, rgba(145,141,132,.2) 100%),
+    repeating-linear-gradient(180deg, rgba(30,29,26,.055) 0 1px, rgba(255,255,255,.3) 1px 4px, transparent 4px 9px);
+  opacity: var(--book-stack-opacity);
+  filter: saturate(.72) contrast(1.01);
+  box-shadow:
+    3px 0 13px rgba(35,34,30,.1),
+    inset -2px 0 6px rgba(40,38,34,.09);
+  transform: translate3d(0, 1px, -6px);
 }
 
 .design-book-pages::after {
-  right: -.2%;
-  z-index: 8;
-  width: 8%;
+  top: .55%;
+  right: -.32%;
+  bottom: .55%;
+  z-index: 7;
+  width: clamp(5px, .45vw, 9px);
   background:
-    linear-gradient(90deg, transparent, rgba(255,255,255,.58) 70%, rgba(18,17,14,.14));
-  opacity: .34;
-  transform: translateZ(20px);
+    linear-gradient(90deg, rgba(255,255,255,.84), rgba(224,222,214,.82) 42%, rgba(145,141,132,.28)),
+    repeating-linear-gradient(180deg, rgba(38,36,32,.06) 0 1px, transparent 1px 6px);
+  opacity: .48;
+  box-shadow: inset -2px 0 4px rgba(36,34,30,.09);
+  transform: translate3d(2px, 1px, -5px) rotateY(78deg);
+  transform-origin: 0 50%;
 }
 
 .design-book-page {
   --book-angle: 0deg;
-  --book-lift: 0px;
   --book-fold: 0;
   --book-bend: 0;
-  --book-page-z: 0px;
-  --book-page-x: 0px;
-  --book-page-y: 0px;
-  --book-page-roll: 0deg;
-  --book-page-scale: 1;
   --book-page-opacity: 1;
   --book-front-dim: .04;
   --book-edge-light: .12;
@@ -4994,11 +5010,7 @@ body.intro-locked {
   opacity: var(--book-page-opacity);
   backface-visibility: visible;
   transform-origin: 0 50%;
-  transform:
-    translate3d(var(--book-page-x), calc(var(--book-page-y) + var(--book-lift)), var(--book-page-z))
-    rotateY(var(--book-angle))
-    rotateZ(var(--book-page-roll))
-    scale(var(--book-page-scale));
+  transform: rotateY(var(--book-angle));
   transform-style: preserve-3d;
   transition: box-shadow .08s linear;
   will-change: transform, opacity;
@@ -5009,13 +5021,13 @@ body.intro-locked {
   inset: 0;
   display: block;
   overflow: hidden;
-  border: 1px solid rgba(17,18,15,.12);
-  border-radius: 2px;
-  background: #fff;
+  border: 1px solid rgba(35,35,31,.075);
+  border-radius: 1px;
+  background: #fdfdfb;
   backface-visibility: hidden;
   box-shadow:
-    0 1px 0 rgba(255,255,255,.8) inset,
-    0 0 0 1px rgba(255,255,255,.22);
+    0 1px 0 rgba(255,255,255,.9) inset,
+    0 1px 3px rgba(37,36,32,.055);
   transform-style: preserve-3d;
 }
 
@@ -5025,12 +5037,13 @@ body.intro-locked {
 
 .design-book-page-back {
   background:
-    linear-gradient(90deg, rgba(18,17,14,.22), rgba(255,255,255,.7) 5%, rgba(239,236,226,.96) 68%, rgba(172,166,153,.72) 100%),
-    repeating-linear-gradient(90deg, rgba(18,17,14,.055) 0 1px, transparent 1px 6px),
-    #efebe0;
+    linear-gradient(90deg, rgba(181,178,169,.42), rgba(252,251,247,.94) 4%, rgba(243,241,234,.96) 68%, rgba(205,202,193,.62) 100%),
+    repeating-linear-gradient(90deg, rgba(46,44,39,.028) 0 1px, transparent 1px 7px),
+    #f2f0e9;
   box-shadow:
-    inset 14px 0 18px rgba(17,18,15,.18),
-    inset -18px 0 24px rgba(17,18,15,.22);
+    inset 10px 0 18px rgba(45,43,38,.1),
+    inset -14px 0 22px rgba(45,43,38,.11),
+    inset 0 1px 0 rgba(255,255,255,.78);
   transform: rotateY(180deg) translateZ(1.4px);
 }
 
@@ -5042,10 +5055,10 @@ body.intro-locked {
   z-index: 4;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(17,18,15,calc(.2 + var(--book-stack-dark) * .45)), rgba(255,255,255,.22) 2.4%, transparent 8.2%),
-    linear-gradient(104deg, transparent 0 72%, rgba(255,255,255,var(--book-edge-light)) 84%, rgba(17,18,15,var(--book-front-dim)) 100%),
-    linear-gradient(180deg, rgba(255,255,255,.14), transparent 24% 74%, rgba(17,18,15,.12));
-  opacity: calc(.12 + var(--book-fold) * .42 + var(--book-stack-dark) * .32);
+    linear-gradient(90deg, rgba(37,36,32,calc(.1 + var(--book-stack-dark) * .28)), rgba(255,255,255,.16) 1.8%, transparent 6.4%),
+    linear-gradient(104deg, transparent 0 76%, rgba(255,255,255,var(--book-edge-light)) 88%, rgba(39,37,33,var(--book-front-dim)) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.08), transparent 28% 78%, rgba(38,36,32,.055));
+  opacity: calc(.055 + var(--book-fold) * .24 + var(--book-stack-dark) * .16);
   mix-blend-mode: multiply;
 }
 
@@ -5057,11 +5070,11 @@ body.intro-locked {
   right: 0;
   bottom: 0;
   z-index: 5;
-  width: calc(3.8% + var(--book-bend) * 6%);
+  width: calc(2.2% + var(--book-bend) * 4.2%);
   pointer-events: none;
   background:
-    linear-gradient(90deg, transparent, rgba(255,255,255,calc(.34 + var(--book-edge-light) * .42)) 34%, rgba(16,15,12,calc(.16 + var(--book-front-dim) * .7)));
-  opacity: calc(.18 + var(--book-bend) * .5 + var(--book-stack-dark) * .18);
+    linear-gradient(90deg, transparent, rgba(255,255,255,calc(.3 + var(--book-edge-light) * .34)) 42%, rgba(43,41,37,calc(.08 + var(--book-front-dim) * .46)));
+  opacity: calc(.11 + var(--book-bend) * .34 + var(--book-stack-dark) * .1);
 }
 
 .design-book-page-front img {
@@ -5072,9 +5085,9 @@ body.intro-locked {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  background: #fff;
+  background: #fdfdfb;
   border-radius: 1px;
-  filter: saturate(1.02) contrast(1.015);
+  filter: saturate(1.005) contrast(1.005);
   backface-visibility: hidden;
   transform: translateZ(2px);
   user-select: none;
@@ -5091,14 +5104,14 @@ body.intro-locked {
   bottom: .3%;
   z-index: 3;
   display: block;
-  width: clamp(7px, .75vw, 14px);
+  width: clamp(5px, .52vw, 10px);
   background:
-    linear-gradient(90deg, rgba(255,255,255,.94), rgba(219,214,202,.96) 34%, rgba(91,84,72,.58) 100%),
-    repeating-linear-gradient(180deg, rgba(17,18,15,.12) 0 1px, transparent 1px 5px);
+    linear-gradient(90deg, rgba(255,255,255,.96), rgba(228,225,217,.88) 42%, rgba(145,140,130,.32) 100%),
+    repeating-linear-gradient(180deg, rgba(42,40,35,.07) 0 1px, transparent 1px 6px);
   box-shadow:
-    inset 1px 0 0 rgba(255,255,255,.8),
-    inset -3px 0 5px rgba(17,18,15,.24);
-  opacity: calc(.22 + var(--book-bend) * .78);
+    inset 1px 0 0 rgba(255,255,255,.88),
+    inset -2px 0 4px rgba(42,40,35,.11);
+  opacity: calc(.15 + var(--book-bend) * .6);
   transform: rotateY(90deg) translate3d(50%, 0, 0);
   transform-origin: 100% 50%;
   pointer-events: none;
@@ -5106,39 +5119,63 @@ body.intro-locked {
 
 .design-book-page-shadow {
   position: absolute;
-  right: -7%;
-  bottom: -7%;
-  left: 4%;
+  right: -5%;
+  bottom: -5.5%;
+  left: 3%;
   z-index: -2;
   display: block;
-  height: 18%;
+  height: 15%;
   border-radius: 50%;
-  background: rgba(17,18,15,.42);
+  background: rgba(42,41,37,.28);
   filter: blur(var(--book-shadow-blur));
   opacity: var(--book-shadow-opacity);
-  transform: translate3d(var(--book-shadow-x), var(--book-shadow-y), -46px) scaleX(calc(.78 + var(--book-bend) * .34));
+  transform: translate3d(var(--book-shadow-x), var(--book-shadow-y), -42px) scaleX(calc(.82 + var(--book-bend) * .26));
   pointer-events: none;
 }
 
 .design-book-spine {
   position: absolute;
-  top: .2%;
-  bottom: .2%;
-  left: -2.1%;
-  z-index: 20;
-  width: clamp(18px, 1.5vw, 30px);
+  top: .15%;
+  bottom: .15%;
+  left: -1px;
+  z-index: 172;
+  width: 3px;
   pointer-events: none;
-  border-radius: 3px 0 0 3px;
+  border-radius: 2px 0 0 2px;
   background:
-    repeating-linear-gradient(90deg, #11100d 0 2px, #ece8dc 2px 4px, #2f2a22 4px 8px),
-    linear-gradient(90deg, rgba(13,12,9,.94), rgba(255,255,255,.34) 52%, rgba(13,12,9,.64));
-  opacity: calc(.28 + var(--book-progress) * .58);
+    linear-gradient(90deg, rgba(49,47,42,.24) 0 11%, rgba(205,202,193,.78) 32%, rgba(255,255,255,.76) 60%, rgba(91,87,78,.16) 100%),
+    repeating-linear-gradient(180deg, rgba(42,40,36,.055) 0 1px, transparent 1px 8px);
+  opacity: calc(.32 + var(--book-stack-opacity) * .32);
   box-shadow:
-    8px 0 18px rgba(17,18,15,.22),
-    inset 4px 0 8px rgba(255,255,255,.18),
-    inset -8px 0 12px rgba(0,0,0,.38);
-  transform: translateZ(56px) rotateY(-84deg);
-  transform-origin: 100% 50%;
+    3px 0 12px rgba(43,41,37,.11),
+    inset 2px 0 5px rgba(255,255,255,.46),
+    inset -3px 0 5px rgba(43,41,37,.11);
+  transform: translate3d(0, 0, 2px);
+}
+
+.design-book-spine::before,
+.design-book-spine::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  pointer-events: none;
+}
+
+.design-book-spine::before {
+  right: 0;
+  width: 1px;
+  background: rgba(41,39,35,.2);
+  filter: blur(.25px);
+}
+
+.design-book-spine::after {
+  right: -4px;
+  width: 5px;
+  background:
+    linear-gradient(90deg, rgba(54,51,45,.09), rgba(255,255,255,.22) 45%, transparent),
+    repeating-linear-gradient(180deg, rgba(42,40,35,.05) 0 1px, transparent 1px 9px);
+  opacity: .44;
+  filter: blur(.16px);
 }
 
 .design-book-hint {
