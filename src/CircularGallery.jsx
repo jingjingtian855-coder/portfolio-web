@@ -101,7 +101,7 @@ function makeTextTexture(gl, item, index, color, font) {
   context.textBaseline = 'top'
   context.letterSpacing = '1px'
 
-  context.font = '700 32px "Century Gothic", Bahnschrift, sans-serif'
+  context.font = '700 38px "Century Gothic", Bahnschrift, sans-serif'
   context.fillStyle = '#b5a000'
   context.fillText(number, 260, 58)
 
@@ -109,7 +109,7 @@ function makeTextTexture(gl, item, index, color, font) {
   context.fillStyle = color
   context.fillText(title, 342, 56, 420)
 
-  context.font = '600 20px "Century Gothic", Bahnschrift, sans-serif'
+  context.font = '600 26px "Century Gothic", Bahnschrift, sans-serif'
   context.fillStyle = 'rgba(17, 18, 15, 0.58)'
   context.fillText(medium, 342, 96, 420)
 

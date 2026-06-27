@@ -99,7 +99,7 @@ const desktopApps = [
   { label: 'PROCESSING', image: '/images/desktop-cutouts/processing.png', x: '60.10%', y: '30.87%', iconClass: 'desktop-icon-processing' },
   { label: 'UNREAL', image: '/images/desktop-cutouts/unreal.png', x: '64.00%', y: '20.80%' },
   { label: 'TOUCHDESIGNER', image: '/images/desktop-cutouts/touchdesigner.png', x: '46.48%', y: '76.04%', iconClass: 'desktop-icon-touchdesigner' },
-  { label: 'MESHLAB', image: '/images/desktop-cutouts/eye.png', x: '45.68%', y: '63.95%' },
+  { label: 'MESHLAB', image: '/images/desktop-cutouts/eye.png', x: '46.48%', y: '88.40%' },
   { label: 'WORD', image: '/images/desktop-cutouts/word-app.png', x: '35.43%', y: '26.39%' },
   { label: 'EXCEL', image: '/images/desktop-cutouts/excel.png', x: '54.06%', y: '73.53%' },
   { label: 'POWERPOINT', image: '/images/desktop-cutouts/powerpoint.png', x: '59.64%', y: '79.76%' },
@@ -1640,7 +1640,7 @@ function App() {
               cardWidth={2.15}
               cardHeight={3.32}
               spacing={2.9}
-              font="600 26px 'Century Gothic'"
+              font="600 36px 'Century Gothic'"
               onSelect={openPlasticWork}
               onActiveIndexChange={setPlasticCurrentIndex}
             />

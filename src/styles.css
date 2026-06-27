@@ -1206,8 +1206,8 @@ footer span:nth-child(3) {
 }
 
 .desktop-item-app {
-  --desktop-icon-size: clamp(54px, 3.7vw, 68px);
-  width: clamp(74px, 5.1vw, 96px);
+  --desktop-icon-size: clamp(58px, 4vw, 74px);
+  width: clamp(82px, 5.6vw, 106px);
 }
 
 .desktop-item-app .desktop-icon-shell {
@@ -2863,7 +2863,7 @@ footer span:nth-child(3) {
   height: 100svh;
   min-height: 0;
   box-sizing: border-box;
-  padding: 28px 0 26px;
+  padding: 48px 0 26px;
   color: var(--ink);
   background:
     linear-gradient(rgba(247, 244, 235, .34), rgba(247, 244, 235, .34)),
@@ -2937,6 +2937,7 @@ footer span:nth-child(3) {
   z-index: 1;
   display: flex;
   flex-direction: column;
+  width: min(1880px, calc(100vw - clamp(96px, 8vw, 160px)));
   height: 100%;
 }
 
@@ -2950,25 +2951,25 @@ footer span:nth-child(3) {
 }
 
 .menu-nav .hero-wordmark {
-  font: 500 15px/1 "Century Gothic", "Bahnschrift", sans-serif;
+  font: 500 23px/1 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: .08em;
 }
 
 .menu-nav .hero-wordmark span {
-  margin-left: 5px;
-  font-size: 9px;
+  margin-left: 6px;
+  font-size: 12px;
 }
 
 .menu-nav nav {
   display: flex;
   justify-self: end;
-  gap: clamp(20px, 2vw, 40px);
+  gap: clamp(24px, 2vw, 38px);
 }
 
 .menu-nav nav a {
   position: relative;
   font-family: "Century Gothic", "Bahnschrift", sans-serif;
-  font-size: 13px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: .08em;
 }
@@ -2990,70 +2991,66 @@ footer span:nth-child(3) {
 
 .menu-top {
   display: grid;
-  grid-template-columns: minmax(280px, 360px) minmax(320px, 520px) 1fr;
-  gap: clamp(36px, 4vw, 76px);
+  grid-template-columns: minmax(420px, 520px) minmax(520px, 760px) 1fr;
+  gap: clamp(96px, 10vw, 210px);
   align-items: end;
-  padding-top: clamp(42px, 5vh, 58px);
+  padding-top: clamp(86px, 8.8vh, 107px);
 }
 
 .menu-top h2 {
   margin: 0;
-  font: 300 clamp(48px, 4vw, 72px)/.9 "Century Gothic", "Bahnschrift Light", sans-serif;
+  font: 300 clamp(62px, 4.8vw, 86px)/.9 "Century Gothic", "Bahnschrift Light", sans-serif;
   letter-spacing: -.08em;
 }
 
 .menu-top p {
-  max-width: 500px;
-  margin: 0 0 5px;
-  font: 600 clamp(11px, .76vw, 14px)/1.45 "SimHei", "Microsoft YaHei", sans-serif;
+  max-width: 800px;
+  margin: 0 0 12px;
+  font: 600 clamp(14px, .92vw, 18px)/1.45 "SimHei", "Microsoft YaHei", sans-serif;
 }
 
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(28px, 4.6vw, 84px);
-  width: min(1460px, 94%);
-  margin: clamp(34px, 4.8vh, 54px) auto 0;
+  gap: clamp(56px, 4.6vw, 92px);
+  width: min(1756px, 96%);
+  margin: clamp(66px, 7.1vh, 84px) auto 0;
   align-items: start;
 }
 
 .menu-card {
   position: relative;
-  width: min(100%, 260px);
+  width: min(100%, 370px);
   justify-self: center;
 }
 
 .menu-card:nth-child(1) {
-  width: min(100%, 300px);
-  margin-top: clamp(34px, 5vh, 54px);
+  margin-top: clamp(16px, 1.7vh, 20px);
 }
 
 .menu-card:nth-child(2) {
-  width: min(100%, 238px);
-  margin-top: clamp(82px, 10vh, 112px);
+  margin-top: clamp(92px, 9.5vh, 108px);
 }
 
 .menu-card:nth-child(3) {
-  width: min(100%, 205px);
-  margin-top: clamp(24px, 3.6vh, 48px);
+  margin-top: 0;
 }
 
 .menu-card:nth-child(4) {
-  width: min(100%, 280px);
-  margin-top: clamp(62px, 8vh, 86px);
+  margin-top: clamp(62px, 6.3vh, 72px);
 }
 
 .menu-card-index {
   position: absolute;
-  top: 9px;
-  left: -38px;
+  top: 15px;
+  left: -68px;
   display: grid;
   place-items: center;
-  width: 27px;
-  height: 27px;
+  width: 48px;
+  height: 48px;
   padding: 0;
   background: #ffd900;
-  font: 600 9px/1 "Century Gothic", "Bahnschrift", sans-serif;
+  font: 600 14px/1 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: .08em;
   text-align: center;
 }
@@ -3112,15 +3109,15 @@ footer span:nth-child(3) {
 }
 
 .menu-card h3 {
-  margin: 12px 0 5px;
-  font: 700 clamp(14px, 1vw, 18px)/1.05 "Century Gothic", "Bahnschrift", sans-serif;
+  margin: 20px 0 7px;
+  font: 700 clamp(18px, 1.25vw, 24px)/1.05 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: -.035em;
 }
 
 .menu-card p {
   margin: 0;
   color: rgba(18, 18, 15, .62);
-  font: 500 10px/1.25 "Century Gothic", "Bahnschrift", sans-serif;
+  font: 500 16px/1.25 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: .06em;
 }
 
@@ -3323,6 +3320,10 @@ footer span:nth-child(3) {
 }
 
 @media (max-width: 1000px) {
+  .menu-section > .shell {
+    width: calc(100vw - 48px);
+  }
+
   .menu-top {
     grid-template-columns: minmax(240px, 300px) 1fr;
     gap: 30px;
@@ -3347,6 +3348,10 @@ footer span:nth-child(3) {
     height: auto;
     min-height: 100svh;
     padding: 24px 0 32px;
+  }
+
+  .menu-section > .shell {
+    width: calc(100vw - 32px);
   }
 
   .menu-nav nav {
@@ -3466,6 +3471,7 @@ body.intro-locked {
 .hero-editorial .hero-nav {
   z-index: 8;
   grid-template-columns: auto 1fr;
+  width: min(1880px, calc(100vw - clamp(96px, 8vw, 160px)));
   color: var(--ink);
   opacity: 0;
   transform: translateY(-18px);
@@ -3476,23 +3482,23 @@ body.intro-locked {
 }
 
 .hero-editorial .hero-wordmark {
-  font: 500 15px/1 "Century Gothic", "Bahnschrift", sans-serif;
+  font: 500 23px/1 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: .08em;
 }
 
 .hero-editorial .hero-wordmark span {
-  margin-left: 5px;
-  font-size: 9px;
+  margin-left: 6px;
+  font-size: 12px;
 }
 
 .hero-editorial .hero-nav nav {
   justify-self: end;
-  gap: clamp(20px, 2vw, 40px);
+  gap: clamp(24px, 2vw, 38px);
 }
 
 .hero-editorial .hero-nav nav a {
   font-family: "Century Gothic", "Bahnschrift", sans-serif;
-  font-size: 13px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: .08em;
 }
@@ -4653,6 +4659,22 @@ body.intro-locked {
   transform: translateX(-50%);
 }
 
+.design-book-nav .hero-wordmark {
+  font-size: 20px;
+}
+
+.design-book-nav .hero-wordmark span {
+  font-size: 10px;
+}
+
+.design-book-nav nav {
+  gap: clamp(20px, 1.7vw, 32px);
+}
+
+.design-book-nav nav a {
+  font-size: 16px;
+}
+
 .design-book-meta b {
   color: #c7b200;
   font: inherit;
@@ -5346,17 +5368,31 @@ body.lightbox-open {
 /* Portfolio tail, adapted from the reference footer structure. */
 .portfolio-tail {
   --tail-x: 24%;
-  --tail-y: 16%;
+  --tail-y: 11%;
   position: relative;
+  z-index: 50;
   isolation: isolate;
-  height: min(100svh, 900px);
+  height: 100svh;
   min-height: 680px;
   overflow: hidden;
   color: #11120f;
   background: #ffd900;
+  box-shadow: 0 -28px 0 #ffd900;
   scroll-margin-top: 0;
   -webkit-mask-image: none !important;
   mask-image: none !important;
+}
+
+.portfolio-tail::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: 0;
+  left: 0;
+  z-index: 45;
+  height: 4px;
+  pointer-events: none;
+  background: #ffd900;
 }
 
 .portfolio-tail[data-page-scene] {
@@ -5366,7 +5402,7 @@ body.lightbox-open {
 
 .tail-beams {
   position: absolute;
-  inset: 0;
+  inset: -36px 0 0;
   z-index: -1;
   pointer-events: none;
   background:
@@ -5389,7 +5425,7 @@ body.lightbox-open {
 
 .tail-menu-button {
   position: absolute;
-  top: clamp(72px, 8vh, 110px);
+  top: clamp(44px, 5.6vh, 76px);
   right: clamp(20px, 2.6vw, 48px);
   z-index: 4;
   display: grid;
@@ -5399,13 +5435,13 @@ body.lightbox-open {
   min-width: 170px;
   padding: 15px 16px;
   border: 2px solid #11120f;
-  font: 700 10px/1 "Century Gothic", "Bahnschrift", sans-serif;
+  font: 700 12px/1 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: .08em;
   transition: color .28s ease, background .28s ease;
 }
 
 .tail-menu-button b {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 400;
   transition: transform .35s ease;
 }
@@ -5423,7 +5459,7 @@ body.lightbox-open {
   --mark-x: 0px;
   --mark-y: 0px;
   position: absolute;
-  top: clamp(78px, 9vh, 118px);
+  top: clamp(46px, 6vh, 82px);
   left: clamp(18px, 1.6vw, 32px);
   z-index: 1;
   margin: 0;
@@ -5436,6 +5472,7 @@ body.lightbox-open {
 }
 
 .portfolio-tail[data-page-scene] .page-transition-sweep-dark {
+  display: none;
   background: #11120f;
 }
 
@@ -5512,7 +5549,7 @@ body.lightbox-open {
 .tail-columns span {
   margin-bottom: 14px;
   color: rgba(17,18,15,.58);
-  font: 700 10px/1 "Century Gothic", "Bahnschrift", sans-serif;
+  font: 700 12px/1 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: .08em;
 }
 
@@ -5520,7 +5557,7 @@ body.lightbox-open {
 .tail-columns p {
   position: relative;
   margin: 0 0 8px;
-  font: 600 clamp(11px, .76vw, 13px)/1.28 "Century Gothic", "Bahnschrift", sans-serif;
+  font: 600 clamp(13px, .86vw, 16px)/1.28 "Century Gothic", "Bahnschrift", sans-serif;
 }
 
 .tail-columns a::after {
@@ -5559,7 +5596,7 @@ body.lightbox-open {
   align-items: center;
   min-height: 48px;
   border-top: 1px solid rgba(17,18,15,.55);
-  font: 600 9px/1 "Century Gothic", "Bahnschrift", sans-serif;
+  font: 600 11px/1 "Century Gothic", "Bahnschrift", sans-serif;
   letter-spacing: .08em;
 }
 
